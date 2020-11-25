@@ -1,6 +1,6 @@
+import 'reflect-metadata';
 import express from 'express';
 import morgan from 'morgan';
-import 'reflect-metadata';
 import { createConnection } from 'typeorm';
 import trim from './middleware/trim';
 import authRoutes from './routes/auth';
