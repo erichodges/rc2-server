@@ -46,7 +46,7 @@ export class User extends BaseEntity {
 
   @BeforeInsert()
   async hashPassword() {
-    this.password = await argon2.hash(this.password);
+    this.password = await argon2.hash(this.password, { type: argon2.argon2id });
   }
 
   toJSON() {
