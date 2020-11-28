@@ -2,6 +2,8 @@ import * as argon2 from 'argon2';
 import { isEmpty, validate } from 'class-validator';
 import { Request, Response, Router } from 'express';
 import { User } from '../entities/User';
+import jwt from 'jsonwebtoken';
+import cookie from 'cookie';
 
 const register = async (req: Request, res: Response) => {
   const { email, username, password } = req.body;
@@ -54,6 +56,21 @@ const login = async (req: Request, res: Response) => {
     if (!validPWD) {
       return null;
     }
+    // base64 URL safe string gererated at:
+    // https://generate.plus/en/base64
+    // Also see: https://www.base64encode.org/enc/random/
+    const token = jwt.sign({ username }, 'process.env.JWT_SECRET');
+
+    res.set(
+      'Set-Cookie',
+      cookie.serialize('token', token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'strict',
+        maxAge: 3600, // = 1 hour
+        path: '/' // Valid for the whole site. If left black it will only be valid for the login route
+      })
+    );
 
     return res.json(user);
   } catch (err) {}

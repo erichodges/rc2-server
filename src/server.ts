@@ -4,6 +4,9 @@ import morgan from 'morgan';
 import { createConnection } from 'typeorm';
 import trim from './middleware/trim';
 import authRoutes from './routes/auth';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const app = express();
 
