@@ -4,7 +4,9 @@ import { Request, Response, Router } from 'express';
 import { User } from '../entities/User';
 import jwt from 'jsonwebtoken';
 import cookie from 'cookie';
-import { resolveAny } from 'dns';
+import auth from '../middleware/auth';
+
+// import { resolveAny } from 'dns';
 
 console.log(process.env.JWT_SECRET);
 
@@ -79,28 +81,28 @@ const login = async (req: Request, res: Response) => {
   } catch (err) {}
 };
 
-const me = async (req: Request, res: Response) => {
-  try {
-    // const token = ;
-    const token = req.cookies.token;
-    if (!token) throw new Error('Unauthenticated');
+const me = (req: Request, res: Response) => {
+  return res.json(res.locals.user);
+};
 
-    const { username }: any = jwt.verify(token, process.env.JWT_SECRET);
-
-    const user = await User.findOne({ username });
-
-    if (!user) throw new Error('Unauthenticated');
-
-    return res.json(user);
-  } catch (err) {
-    console.log(err);
-    return res.status(401).json({ error: err.message });
-  }
+const logout = (_: Request, res: Response) => {
+  res.set(
+    'Set-Cookie',
+    cookie.serialize('token', '', {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'strict',
+      expires: new Date(0),
+      path: '/'
+    })
+  );
+  return res.status(200).json({ success: true });
 };
 
 const router = Router();
 router.post('/register', register);
 router.post('/login', login);
-router.get('/me', me);
+router.get('/me', auth, me);
+router.get('/logout', auth, logout);
 
 export default router;
