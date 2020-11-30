@@ -6,8 +6,6 @@ import jwt from 'jsonwebtoken';
 import cookie from 'cookie';
 import auth from '../middleware/auth';
 
-// import { resolveAny } from 'dns';
-
 console.log(process.env.JWT_SECRET);
 
 const register = async (req: Request, res: Response) => {
