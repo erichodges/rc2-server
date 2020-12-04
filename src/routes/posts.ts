@@ -1,6 +1,7 @@
 import { IS_POSTAL_CODE } from 'class-validator';
 import { Request, Response, Router } from 'express';
 import Post from '../entities/Post';
+import Sub from '../entities/Sub';
 import auth from '../middleware/auth';
 
 const createPost = async (req: Request, res: Response) => {
@@ -13,8 +14,9 @@ const createPost = async (req: Request, res: Response) => {
 
   try {
     // ToDo: find sub
+    const subRecord = await Sub.findOneOrFail({ name: sub });
 
-    const post = new Post({ title, body, user, subName: sub });
+    const post = new Post({ title, body, user, sub: subRecord });
     await post.save();
     return res.json(post);
   } catch (err) {
