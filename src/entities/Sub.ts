@@ -1,5 +1,4 @@
 import {
-  BeforeInsert,
   Column,
   Entity as TOEntity,
   Index,
@@ -7,7 +6,6 @@ import {
   ManyToOne,
   OneToMany
 } from 'typeorm';
-import { makeId, slugify } from '../util/helpers';
 
 import Entity from './Entity';
 import Post from './Post';

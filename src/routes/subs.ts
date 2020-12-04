@@ -1,6 +1,6 @@
 import { isEmpty } from 'class-validator';
-import { name, Request, Response, Router } from 'express';
-import { title } from 'process';
+import { Request, Response, Router } from 'express';
+// import { title } from 'process';
 import { getRepository } from 'typeorm';
 
 import Sub from '../entities/Sub';

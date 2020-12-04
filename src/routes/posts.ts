@@ -1,4 +1,3 @@
-import { IS_POSTAL_CODE } from 'class-validator';
 import { Request, Response, Router } from 'express';
 import Post from '../entities/Post';
 import Sub from '../entities/Sub';

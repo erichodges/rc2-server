@@ -3,10 +3,24 @@
     "lib": ["es5", "es6"],
     "target": "es5",
     "moduleResolution": "node",
+    "esModuleInterop": true,
     "outDir": "./build",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "sourceMap": true,
-    "esModuleInterop": true
+    // Strict Items:
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    // StrictPropertyInitialization":
+    "noImplicitThis": true,
+    // Extra
+    "alwaysStrict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "resolveJsonModule": true
   }
 }
