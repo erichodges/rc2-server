@@ -5,6 +5,7 @@ import { createConnection } from 'typeorm';
 import trim from './middleware/trim';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
+import cors from 'cors';
 
 dotenv.config();
 
@@ -19,6 +20,7 @@ app.use(express.json());
 app.use(morgan('dev'));
 app.use(trim);
 app.use(cookieParser());
+app.use(cors());
 
 app.get('/', (_, res) => res.send('Yo wtf??'));
 app.use('/api/auth', authRoutes);
