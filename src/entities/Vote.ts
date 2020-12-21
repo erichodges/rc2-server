@@ -20,6 +20,7 @@ export default class Vote extends Entity {
 
   @Column()
   username: string;
+
   @ManyToOne(() => Post)
   post: Post;
 

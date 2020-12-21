@@ -10,11 +10,12 @@ import {
   OneToMany
 } from 'typeorm';
 
-import { makeId, slugify } from '../util/helpers';
-import Comment from './Comment';
-import Entity from './Entity';
-import Sub from './Sub';
 import User from './User';
+import Comment from './Comment';
+import Sub from './Sub';
+import Vote from './Vote';
+import Entity from './Entity';
+import { makeId, slugify } from '../util/helpers';
 
 @TOEntity('posts')
 export default class Post extends Entity {
@@ -53,6 +54,9 @@ export default class Post extends Entity {
 
   @OneToMany(() => Comment, (comment) => comment.post)
   comments: Comment[];
+
+  @OneToMany(() => Vote, (vote) => vote.post)
+  votes: Vote[];
 
   @Expose() get url(): string {
     return `r/${this.subName}/${this.identifier}/${this.slug}`;

@@ -9,14 +9,14 @@
     "experimentalDecorators": true,
     "sourceMap": true,
     // Strict Items:
-    "noImplicitAny": true,
+    //"alwaysStrict": true,
+    "noImplicitAny": false,
     "strictNullChecks": true,
     "strictFunctionTypes": true,
     "strictBindCallApply": true,
     // StrictPropertyInitialization":
     "noImplicitThis": true,
     // Extra
-    "alwaysStrict": true,
     "noUnusedLocals": false,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
