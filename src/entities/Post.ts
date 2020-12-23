@@ -16,6 +16,7 @@ import Sub from './Sub';
 import Vote from './Vote';
 import Entity from './Entity';
 import { makeId, slugify } from '../util/helpers';
+import { userInfo } from 'os';
 
 @TOEntity('posts')
 export default class Post extends Entity {
@@ -69,6 +70,20 @@ export default class Post extends Entity {
   // createFields() {
   //   this.url = `r/${this.subName}/${this.identifier}/${this.slug}`
   // }
+
+  @Expose() get commentCount(): number {
+    return this.comments?.length;
+  }
+
+  @Expose() get voteScore(): number {
+    return this.votes?.reduce((prev, curr) => prev + (curr.value || 0), 0);
+  }
+
+  protected userVote: number;
+  setUserVote(user: User) {
+    const index = this.votes?.findIndex((v) => v.username === user.username);
+    this.userVote = index > -1 ? this.votes[index].value : 0;
+  }
 
   @BeforeInsert()
   makeIdAndSlug() {
