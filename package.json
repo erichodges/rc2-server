@@ -1,5 +1,6 @@
 {
-  "name": "new-typeorm-project",
+  "name": "reddit-clone-client",
+  "author": "Eric Hodges",
   "version": "0.0.1",
   "description": "Awesome project developed with TypeORM.",
   "devDependencies": {
