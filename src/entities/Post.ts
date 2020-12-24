@@ -1,4 +1,4 @@
-import { Expose } from 'class-transformer';
+import { Exclude, Expose } from 'class-transformer';
 import {
   AfterLoad,
   BeforeInsert,
@@ -56,6 +56,7 @@ export default class Post extends Entity {
   @OneToMany(() => Comment, (comment) => comment.post)
   comments: Comment[];
 
+  @Exclude()
   @OneToMany(() => Vote, (vote) => vote.post)
   votes: Vote[];
 
