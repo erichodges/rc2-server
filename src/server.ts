@@ -2,7 +2,6 @@ import 'reflect-metadata';
 import express from 'express';
 import morgan from 'morgan';
 import { createConnection } from 'typeorm';
-import trim from './middleware/trim';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
@@ -13,6 +12,8 @@ import authRoutes from './routes/auth';
 import postRoutes from './routes/posts';
 import subRoutes from './routes/subs';
 import miscRoutes from './routes/misc';
+
+import trim from './middleware/trim';
 
 const app = express();
 const PORT = process.env.PORT;

@@ -1,21 +1,21 @@
-import { Exclude, Expose } from 'class-transformer';
 import {
-  AfterLoad,
-  BeforeInsert,
-  Column,
   Entity as TOEntity,
+  Column,
   Index,
-  JoinColumn,
+  BeforeInsert,
   ManyToOne,
-  OneToMany
+  JoinColumn,
+  OneToMany,
+  AfterLoad
 } from 'typeorm';
+import { Exclude, Expose } from 'class-transformer';
 
-import User from './User';
-import Comment from './Comment';
-import Sub from './Sub';
-import Vote from './Vote';
 import Entity from './Entity';
+import User from './User';
 import { makeId, slugify } from '../util/helpers';
+import Sub from './Sub';
+import Comment from './Comment';
+import Vote from './Vote';
 import { userInfo } from 'os';
 
 @TOEntity('posts')
